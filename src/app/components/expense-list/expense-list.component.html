@@ -1,0 +1,16 @@
+<div class="p-4 bg-white shadow-md rounded-lg">
+     <h2 class="text-lg font-bold mb-2">Expense List</h2>
+
+     <ul *ngIf="(expenses$ | async) as expenses; else emptyList">
+          <li *ngFor="let expense of expenses" class="p-2 flex justify-between">
+               <span>{{ expense.title }} - {{ expense.amount | currency:'INR'}} ({{ expense.category }})</span>
+               <div>
+                    <button (click)="editExpense(expense)" class="text-blue-500 mr-2">Edit</button>
+                    <button (click)="deleteExpense(expense.id)" class="text-red-500">Delete</button>
+               </div>
+          </li>
+     </ul>
+     <ng-template #emptyList>
+          <p>No expenses added yet.</p>
+     </ng-template>
+</div>

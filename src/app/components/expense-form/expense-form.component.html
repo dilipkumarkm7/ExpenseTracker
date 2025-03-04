@@ -1,0 +1,22 @@
+<form (submit)="addOrUpdateExpense()" class="p-4 bg-white shadow-md rounded-lg">
+     <h2 class="font-bold text-2xl mb-2 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500">Expense Tracker</h2>
+     <input [(ngModel)]="title" name="title" placeholder="Title" class="p-2 border rounded-md w-full mb-2" required />
+
+     <input [(ngModel)]="amount" name="amount" type="number" placeholder="Amount" min="0" class="p-2 border rounded-md w-full mb-2"
+          required />
+
+     <select [(ngModel)]="category" name="category" class="p-2 border rounded-md w-full mb-2" required>
+          <option value="" disabled selected>Select Category</option>
+          <option value="Food">Food</option>
+          <option value="Transport">Transport</option>
+          <option value="Shopping">Shopping</option>
+          <option value="Others">Others</option>
+     </select>
+
+     <input *ngIf="category === 'Others'" [(ngModel)]="customCategory" name="customCategory"
+          placeholder="Enter Custom Category" class="p-2 border w-full mb-2" required />
+
+     <button class="bg-blue-500 text-white p-2 w-full rounded-md">
+          {{ editingExpense ? 'Update Expense' : 'Add Expense' }}
+     </button>
+</form>
